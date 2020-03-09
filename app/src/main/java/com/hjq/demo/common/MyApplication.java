@@ -85,7 +85,7 @@ public final class MyApplication extends Application {
         });
 
         // Bugly 异常捕捉
-        CrashReport.initCrashReport(application, AppConfig.getBuglyId(), false);
+        CrashReport.initCrashReport(application, AppConfig.getBuglyId(), true);
 
         // Crash 捕捉界面
         CaocConfig.Builder.create()

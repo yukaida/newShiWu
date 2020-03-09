@@ -1,5 +1,6 @@
 package com.hjq.demo.ui.fragment;
 
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ import com.hjq.demo.R;
 import com.hjq.demo.common.MyFragment;
 import com.hjq.demo.ui.activity.HomeActivity;
 import com.hjq.demo.widget.XCollapsingToolbarLayout;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import butterknife.BindView;
 
@@ -51,6 +53,16 @@ public final class TestFragmentA extends MyFragment<HomeActivity>
 
         //设置渐变监听
         mCollapsingToolbarLayout.setOnScrimsListener(this);
+
+
+
+        mAddressView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CrashReport.testJavaCrash();
+
+            }
+        });
     }
 
     @Override

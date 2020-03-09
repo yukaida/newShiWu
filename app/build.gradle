@@ -56,7 +56,7 @@ android {
             // 设置混淆
             minifyEnabled false
             // 开发环境下的 BuglyId
-            buildConfigField "String", "BUGLY_ID", "\"请自行替换 Bugly 上面的 AppID\""
+            buildConfigField "String", "BUGLY_ID", "\"e160494f3b\""
             signingConfig signingConfigs.config
         }
 
@@ -70,7 +70,7 @@ android {
             // 设置混淆
             minifyEnabled true
             // 正式环境下的 BuglyId
-            buildConfigField "String", "BUGLY_ID", "\"请自行替换 Bugly 上面的 AppID\""
+            buildConfigField "String", "BUGLY_ID", "\"e160494f3b\""
             signingConfig signingConfigs.config
         }
     }
