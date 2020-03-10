@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.TestFragmentA"
+    tools:context=".ui.fragment.realuse.TestFragmentA"
     tools:ignore="HardcodedText">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -56,7 +56,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="10dp"
                         android:gravity="center_vertical"
-                        android:text="广州"
+                        android:text="南昌"
                         android:textColor="@color/white"
                         android:textSize="15sp" />
 
@@ -69,7 +69,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_home_search_bar_transparent"
                         android:gravity="center"
-                        android:text="完善细节，追求完美"
+                        android:text="请输入要查找的物品关键字"
                         android:textColor="@color/white60"
                         android:textSize="14sp" />
 

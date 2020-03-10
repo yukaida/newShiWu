@@ -42,6 +42,7 @@ public class GlideConfig extends AppGlideModule {
         if (diskCacheFile.exists() && diskCacheFile.isFile()) {
             // 执行删除操作
             diskCacheFile.delete();
+
         }
         // 如果这个路径不存在
         if (!diskCacheFile.exists()) {

@@ -3,8 +3,10 @@ package com.hjq.demo.ui.fragment;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.hjq.bar.TitleBar;
 import com.hjq.demo.R;
 import com.hjq.demo.aop.SingleClick;
+import com.hjq.demo.bean.UserData;
 import com.hjq.demo.common.MyFragment;
 import com.hjq.demo.http.glide.GlideApp;
 import com.hjq.demo.ui.activity.HomeActivity;
@@ -12,6 +14,8 @@ import com.hjq.widget.view.CountdownView;
 import com.hjq.widget.view.SwitchButton;
 
 import butterknife.BindView;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 /**
  *    author : Android 轮子哥
@@ -30,7 +34,12 @@ public final class TestFragmentB extends MyFragment<HomeActivity>
     @BindView(R.id.cv_test_countdown)
     CountdownView mCountdownView;
 
+    @BindView(R.id.title_test)
+    TitleBar titleBarFound;
+
     public static TestFragmentB newInstance() {
+
+
         return new TestFragmentB();
     }
 
@@ -44,6 +53,7 @@ public final class TestFragmentB extends MyFragment<HomeActivity>
         mSwitchButton.setOnCheckedChangeListener(this);
 
         setOnClickListener(R.id.cv_test_countdown);
+
     }
 
     @Override
@@ -58,9 +68,32 @@ public final class TestFragmentB extends MyFragment<HomeActivity>
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.cv_test_countdown) {
-            toast(R.string.common_code_send_hint);
-            mCountdownView.start();
+//            toast(R.string.common_code_send_hint);
+//            mCountdownView.start();
+
+            UserData userData = new UserData();
+            userData.setBirthday("19961203");
+            userData.setUserName("yukaida");
+            userData.setPhoneNumber("18170402901");
+            userData.setQqNumber("1204799167");
+            userData.setSex("男");
+
+
+            userData.save(new SaveListener<String>() {
+                @Override
+                public void done(String s, BmobException e) {
+                    if(e==null){
+                        toast("添加数据成功，返回objectId为："+s);
+                    }else{
+                        toast("创建数据失败：" + e.getMessage());
+                    }
+                }
+            });
+
         }
+
+
+
     }
 
     @Override

@@ -15,12 +15,13 @@ import com.hjq.demo.common.MyFragment;
 import com.hjq.demo.helper.ActivityStackManager;
 import com.hjq.demo.helper.DoubleClickHelper;
 import com.hjq.demo.other.KeyboardWatcher;
-import com.hjq.demo.ui.fragment.TestFragmentA;
+import com.hjq.demo.ui.fragment.realuse.TestFragmentA;
 import com.hjq.demo.ui.fragment.TestFragmentB;
 import com.hjq.demo.ui.fragment.TestFragmentC;
 import com.hjq.demo.ui.fragment.TestFragmentD;
 
 import butterknife.BindView;
+import cn.bmob.v3.Bmob;
 
 /**
  *    author : Android 轮子哥
@@ -66,6 +67,10 @@ public final class HomeActivity extends MyActivity
 
         // 限制页面数量
         mViewPager.setOffscreenPageLimit(mPagerAdapter.getCount());
+
+        Bmob.initialize(this, "ef7a87aab27a126186e896a18d50395f");
+
+
     }
 
     /**
