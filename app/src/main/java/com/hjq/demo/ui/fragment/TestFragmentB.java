@@ -77,7 +77,7 @@ public final class TestFragmentB extends MyFragment<HomeActivity>
             userData.setPhoneNumber("18170402901");
             userData.setQqNumber("1204799167");
             userData.setSex("男");
-
+            userData.setPassword("yukaida");
 
             userData.save(new SaveListener<String>() {
                 @Override

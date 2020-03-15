@@ -7,6 +7,16 @@ public class UserData extends BmobObject {
     private String birthday;//生日
     private String phoneNumber;//手机号
     private String qqNumber;//QQ号
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    private String password;//密码
     private String sex;//性别
 
     public String getUserName() {
