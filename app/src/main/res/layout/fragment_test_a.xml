@@ -15,7 +15,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:elevation="0px">
 
-        <com.hjq.demo.widget.XCollapsingToolbarLayout
+        <com.hjq.shiwu.widget.XCollapsingToolbarLayout
             android:id="@+id/ctl_test_bar"
             android:layout_width="match_parent"
             android:layout_height="256dp"
@@ -84,7 +84,7 @@
 
             </com.hjq.bar.TitleBar>
 
-        </com.hjq.demo.widget.XCollapsingToolbarLayout>
+        </com.hjq.shiwu.widget.XCollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
