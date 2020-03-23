@@ -1,5 +1,6 @@
 package com.hjq.shiwu.ui.activity;
 
+import android.os.Message;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.hjq.shiwu.helper.ActivityStackManager;
 import com.hjq.shiwu.helper.DoubleClickHelper;
 import com.hjq.shiwu.other.KeyboardWatcher;
 import com.hjq.shiwu.ui.fragment.realuse.KindFragment;
+import com.hjq.shiwu.ui.fragment.realuse.MessageFragment;
 import com.hjq.shiwu.ui.fragment.realuse.TestFragmentA;
 import com.hjq.shiwu.ui.fragment.TestFragmentB;
 import com.hjq.shiwu.ui.fragment.TestFragmentC;
@@ -61,7 +63,7 @@ public final class HomeActivity extends MyActivity
         mPagerAdapter = new BaseFragmentAdapter<>(this);
         mPagerAdapter.addFragment(TestFragmentA.newInstance());
         mPagerAdapter.addFragment(KindFragment.newInstance());
-        mPagerAdapter.addFragment(TestFragmentC.newInstance());
+        mPagerAdapter.addFragment(MessageFragment.newInstance());
         mPagerAdapter.addFragment(TestFragmentD.newInstance());
 
         mViewPager.setAdapter(mPagerAdapter);
@@ -88,7 +90,7 @@ public final class HomeActivity extends MyActivity
                 mPagerAdapter.setCurrentItem(KindFragment.class);
                 return true;
             case R.id.home_message:
-                mPagerAdapter.setCurrentItem(TestFragmentC.class);
+                mPagerAdapter.setCurrentItem(MessageFragment.class);
                 return true;
             case R.id.home_me:
                 mPagerAdapter.setCurrentItem(TestFragmentD.class);
