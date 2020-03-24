@@ -1,5 +1,10 @@
 package com.hjq.shiwu.ui.fragment;
 
+import android.view.Menu;
+import android.view.MenuInflater;
+
+import androidx.annotation.NonNull;
+
 import com.hjq.shiwu.R;
 import com.hjq.shiwu.common.MyFragment;
 import com.hjq.shiwu.ui.activity.CopyActivity;
@@ -29,5 +34,10 @@ public final class CopyFragment extends MyFragment<CopyActivity> {
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }

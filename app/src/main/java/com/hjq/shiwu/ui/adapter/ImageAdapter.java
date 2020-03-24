@@ -1,6 +1,7 @@
 package com.hjq.shiwu.ui.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -14,6 +15,7 @@ import com.youth.banner.adapter.BannerAdapter;
 import java.util.List;
 
 public class ImageAdapter extends BannerAdapter<BannerBean, ImageAdapter.BannerViewHolder> {
+    private static final String TAG = "ImageAdapter";
     Context context;
     public ImageAdapter(List<BannerBean> mDatas,Context context) {
         //设置数据，也可以调用banner提供的方法,或者自己在adapter中实现
@@ -36,6 +38,7 @@ public class ImageAdapter extends BannerAdapter<BannerBean, ImageAdapter.BannerV
     @Override
     public void onBindView(BannerViewHolder holder, BannerBean data, int position, int size) {
 //        holder.imageView.setImageResource(data.imageRes);
+        Log.d(TAG, "onBindView: Banner imageUrl:" + data.getImageUrl());
         GlideApp.with(context)
                 .load(data.getImageUrl())
                 .into(holder.imageView);

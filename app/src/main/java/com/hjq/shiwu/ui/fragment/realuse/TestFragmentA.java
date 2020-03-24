@@ -79,12 +79,9 @@ public final class TestFragmentA extends MyFragment<HomeActivity>//首页
 
     @Override
     protected void initData() {
-        BannerBean bannerBean = new BannerBean();
-        bannerBean.setImageUrl("https://qzonestyle.gtimg.cn/qzone/qzactStatics/imgs/20200221155843_b40f01.png");
-        BannerBean bannerBean1 = new BannerBean();
-        bannerBean.setImageUrl("http://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=%E5%B9%BF%E5%91%8A%E5%9B%BE&step_word=&hs=0&pn=2&spn=0&di=23430&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&istype=0&ie=utf-8&oe=utf-8&in=&cl=2&lm=-1&st=undefined&cs=2508641903%2C3193858088&os=2437101305%2C499851107&simid=4187236703%2C623583855&adpicid=0&lpn=0&ln=942&fr=&fmq=1584971586364_R&fm=&ic=undefined&s=undefined&hd=undefined&latest=undefined&copyright=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&ist=&jit=&cg=&bdtype=0&oriquery=&objurl=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0197935711ee3c6ac7251343b3addc.jpg&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bzv55s_z%26e3Bv54_z%26e3BvgAzdH3Fo56hAzdH3FZMTUcNDMcNzY%3D_z%26e3Bip4s&gsm=3&rpstart=0&rpnum=0&islist=&querylist=&force=undefined");
-        BannerBean bannerBean2 = new BannerBean();
-        bannerBean.setImageUrl("http://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=%E5%B9%BF%E5%91%8A%E5%9B%BE&step_word=&hs=0&pn=9&spn=0&di=103070&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&istype=0&ie=utf-8&oe=utf-8&in=&cl=2&lm=-1&st=undefined&cs=1487255121%2C510523177&os=16926473%2C323239343&simid=3382372189%2C160492051&adpicid=0&lpn=0&ln=942&fr=&fmq=1584971586364_R&fm=&ic=undefined&s=undefined&hd=undefined&latest=undefined&copyright=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&ist=&jit=&cg=&bdtype=0&oriquery=&objurl=http%3A%2F%2Fpic27.nipic.com%2F20130302%2F9637549_082843274311_2.jpg&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bo3o_z%26e3BvgAzdH3Fkw5xtwgAzdH3F1jpwts-bdln9b_z%26e3Bip4s&gsm=a&rpstart=0&rpnum=0&islist=&querylist=&force=undefined");
+        BannerBean bannerBean = new BannerBean("https://storage.53iq.com/group1/M00/10/31/CgoKTV5gVIiAXe-oAAC2Ju0mZIw314.jpg", "");
+        BannerBean bannerBean1 = new BannerBean("https://storage.53iq.com/group1/M00/10/31/CgoKTV5gVJSAXxYbAAA4hLlxT-Y506.jpg", "");
+        BannerBean bannerBean2 = new BannerBean("https://storage.53iq.com/group1/M00/10/31/CgoKTV5gVJSAXxYbAAA4hLlxT-Y506.jpg", "");
 
         bannerBeanList.add(bannerBean);
         bannerBeanList.add(bannerBean1);
@@ -145,7 +142,7 @@ public final class TestFragmentA extends MyFragment<HomeActivity>//首页
     public void useBanner() {
         //--------------------------简单使用-------------------------------
         //创建（new banner()）或者布局文件中获取banner
-        Banner banner =  findViewById(R.id.banner);
+        Banner banner = findViewById(R.id.banner);
         //默认直接设置adapter就行了
         banner.setAdapter(new ImageAdapter(bannerBeanList, getContext()));
 
@@ -158,6 +155,15 @@ public final class TestFragmentA extends MyFragment<HomeActivity>//首页
         banner.setIndicatorSpace(BannerUtils.dp2px(20));
         banner.setIndicatorMargins(new IndicatorConfig.Margins((int) BannerUtils.dp2px(10)));
         banner.setIndicatorWidth(10, 20);
+        banner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.banner:
+
+                }
+            }
+        });
 //        banner.addItemDecoration(new MarginItemDecoration((int) BannerUtils.dp2px(50)));
 //        banner.setPageTransformer(new DepthPageTransformer());
 //        banner.setOnBannerListener(this);

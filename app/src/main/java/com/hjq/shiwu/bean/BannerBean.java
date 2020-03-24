@@ -1,15 +1,21 @@
 package com.hjq.shiwu.bean;
 
 public class BannerBean {
-    String ImageUrl;
+    String imageUrl;
     String jumpUrl;
 
+    public BannerBean(String imageUrl, String jumpUrl) {
+        super();
+        this.imageUrl = imageUrl;
+        this.jumpUrl = jumpUrl;
+    }
+
     public String getImageUrl() {
-        return ImageUrl;
+        return imageUrl;
     }
 
     public void setImageUrl(String imageUrl) {
-        ImageUrl = imageUrl;
+        this.imageUrl = imageUrl;
     }
 
     public String getJumpUrl() {
