@@ -27,8 +27,8 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute"
         tools:targetApi="n">
-        <activity android:name=".ui.activity.add.ThingsDetailActivity"></activity>
-        <!-- 友盟多渠道（在 App Gradle 中配置，请不要在此处修改） -->
+        <activity android:name=".ui.activity.PushActivity"></activity>
+        <activity android:name=".ui.activity.add.ThingsDetailActivity" /> <!-- 友盟多渠道（在 App Gradle 中配置，请不要在此处修改） -->
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${channel}" /> <!-- 适配 Android 7.0 文件意图 -->
@@ -43,7 +43,7 @@
         </provider>
         <provider
             android:name="cn.bmob.v3.util.BmobContentProvider"
-            android:authorities="com.hjq.shiwu.BmobContentProvider"></provider> <!-- 崩溃界面 -->
+            android:authorities="com.hjq.shiwu.BmobContentProvider" /> <!-- 崩溃界面 -->
         <activity
             android:name=".ui.activity.CrashActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"

@@ -6,10 +6,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.shiwu.R;
 import com.hjq.shiwu.bean.BannerBean;
+import com.hjq.shiwu.bean.ThingsBean;
 import com.hjq.shiwu.common.MyFragment;
 import com.hjq.shiwu.ui.activity.HomeActivity;
 import com.hjq.shiwu.ui.adapter.ImageAdapter;
@@ -25,6 +27,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 /**
  * author : Android 轮子哥
@@ -47,7 +51,12 @@ public final class TestFragmentA extends MyFragment<HomeActivity>//首页
     @BindView(R.id.iv_test_search)
     ImageView mSearchView;
 
+    @BindView(R.id.home_recyclerview)
+    RecyclerView mRecyclerView;
+
+
     private List<BannerBean> bannerBeanList = new ArrayList<>();
+
 
     public static TestFragmentA newInstance() {
         return new TestFragmentA();
@@ -131,6 +140,28 @@ public final class TestFragmentA extends MyFragment<HomeActivity>//首页
                 break;
             case R.id.iv_test_search:
                 toast("跳转到搜索界面");
+                ThingsBean thingsBean = new ThingsBean();
+                thingsBean.setType("lost");
+                thingsBean.setDes("这是一件丢失的物品");
+                thingsBean.setImage("https://storage.53iq.com/group1/M00/10/31/CgoKTV5gVIiAXe-oAAC2Ju0mZIw314.jpg");
+                thingsBean.setKind("校园卡");
+                thingsBean.setName("yukaida");
+                thingsBean.setQqNubmber("1204799167");
+                thingsBean.setTime("2020年3月24日");
+                thingsBean.setTips("是昨天丢失的");
+
+                thingsBean.save(new SaveListener<String>() {
+                    @Override
+                    public void done(String s, BmobException e) {
+                        if (e == null) {
+                            toast("保存成功");
+                        } else {
+                            toast("保存失败了");
+                        }
+                    }
+                });
+
+
                 break;
             case R.id.tv_test_hint:
                 toast("跳转到物品搜索界面");

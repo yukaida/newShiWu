@@ -101,12 +101,14 @@
             android:orientation="vertical">
 
             <com.youth.banner.Banner
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
                 android:layout_height="150dp" />
 
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
 
         </LinearLayout>
