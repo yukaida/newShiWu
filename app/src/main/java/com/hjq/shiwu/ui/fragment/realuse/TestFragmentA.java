@@ -1,20 +1,29 @@
 package com.hjq.shiwu.ui.fragment.realuse;
 
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.shiwu.R;
 import com.hjq.shiwu.bean.BannerBean;
+import com.hjq.shiwu.bean.MessageItem;
+import com.hjq.shiwu.bean.PicBean;
 import com.hjq.shiwu.bean.ThingsBean;
 import com.hjq.shiwu.common.MyFragment;
 import com.hjq.shiwu.ui.activity.HomeActivity;
+import com.hjq.shiwu.ui.activity.add.PushActivity;
+import com.hjq.shiwu.ui.adapter.HomeRvAdapter;
 import com.hjq.shiwu.ui.adapter.ImageAdapter;
+import com.hjq.shiwu.ui.adapter.MessageRvAdapter;
 import com.hjq.shiwu.widget.XCollapsingToolbarLayout;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.youth.banner.Banner;
@@ -22,13 +31,18 @@ import com.youth.banner.config.IndicatorConfig;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.util.BannerUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UploadFileListener;
 
 /**
  * author : Android 轮子哥
@@ -53,6 +67,9 @@ public final class TestFragmentA extends MyFragment<HomeActivity>//首页
 
     @BindView(R.id.home_recyclerview)
     RecyclerView mRecyclerView;
+
+
+    private List<ThingsBean> homeItemList = new ArrayList<>();
 
 
     private List<BannerBean> bannerBeanList = new ArrayList<>();
@@ -84,6 +101,10 @@ public final class TestFragmentA extends MyFragment<HomeActivity>//首页
         });
 
 
+
+
+        
+        
     }
 
     @Override
@@ -97,6 +118,39 @@ public final class TestFragmentA extends MyFragment<HomeActivity>//首页
         bannerBeanList.add(bannerBean2);
 
         useBanner();
+
+
+        initHomeRv();
+
+
+
+    }
+
+    private void initHomeRv() {
+        HomeRvAdapter homeRvAdapter = new HomeRvAdapter(R.layout.item_home_layout, homeItemList,getActivity());
+        BmobQuery<ThingsBean> query = new BmobQuery<>();
+        //按照时间降序
+        query.order("-createdAt");
+        //执行查询，第一个参数为上下文，第二个参数为查找的回调
+        query.findObjects(new FindListener<ThingsBean>() {
+            @Override
+            public void done(List<ThingsBean> object, BmobException e) {
+                if (e == null) {
+                    toast("刷新成功");
+                    homeItemList.clear();
+                    homeItemList.addAll(object);
+
+                    homeRvAdapter.notifyDataSetChanged();
+
+                } else {
+                    toast("请检查网络连接");
+                }
+            }
+        });
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        homeRvAdapter.setAnimationEnable(true);
+        mRecyclerView.setAdapter(homeRvAdapter);
     }
 
     @Override
@@ -139,32 +193,30 @@ public final class TestFragmentA extends MyFragment<HomeActivity>//首页
 
                 break;
             case R.id.iv_test_search:
-                toast("跳转到搜索界面");
-                ThingsBean thingsBean = new ThingsBean();
-                thingsBean.setType("lost");
-                thingsBean.setDes("这是一件丢失的物品");
-                thingsBean.setImage("https://storage.53iq.com/group1/M00/10/31/CgoKTV5gVIiAXe-oAAC2Ju0mZIw314.jpg");
-                thingsBean.setKind("校园卡");
-                thingsBean.setName("yukaida");
-                thingsBean.setQqNubmber("1204799167");
-                thingsBean.setTime("2020年3月24日");
-                thingsBean.setTips("是昨天丢失的");
-
-                thingsBean.save(new SaveListener<String>() {
-                    @Override
-                    public void done(String s, BmobException e) {
-                        if (e == null) {
-                            toast("保存成功");
-                        } else {
-                            toast("保存失败了");
-                        }
-                    }
-                });
-
-
+                Intent intent = new Intent(getActivity(), PushActivity.class);
+                startActivity(intent);
                 break;
             case R.id.tv_test_hint:
                 toast("跳转到物品搜索界面");
+
+
+//                PicBean picBean = new PicBean();
+//                BmobFile bmobFile = new BmobFile(new File("/storage/emulated/0/sina/weibo/storage/photoalbum_save/weibo/img-eee74c8114028f2198240e5a65c2eefe.jpg"));
+//                picBean.setBmobFile(bmobFile);
+//                bmobFile.upload(new UploadFileListener() {
+//                    @Override
+//                    public void done(BmobException e) {
+//                        if (e == null) {
+//                            toast("上传成功");
+//                        } else {
+//                            toast("上传失败");
+//                        }
+//
+//                    }
+//                });
+
+
+
                 break;
         }
     }
