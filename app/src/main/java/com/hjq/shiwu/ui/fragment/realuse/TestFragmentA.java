@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.shiwu.R;
 import com.hjq.shiwu.bean.BannerBean;
+import com.hjq.shiwu.bean.MessageEvent;
 import com.hjq.shiwu.bean.MessageItem;
 import com.hjq.shiwu.bean.PicBean;
 import com.hjq.shiwu.bean.ThingsBean;
@@ -30,6 +31,10 @@ import com.youth.banner.Banner;
 import com.youth.banner.config.IndicatorConfig;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.util.BannerUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -121,7 +126,7 @@ public final class TestFragmentA extends MyFragment<HomeActivity>//首页
 
 
         initHomeRv();
-
+        EventBus.getDefault().register(this);
 
 
     }
@@ -175,13 +180,13 @@ public final class TestFragmentA extends MyFragment<HomeActivity>//首页
             mAddressView.setTextColor(ContextCompat.getColor(getAttachActivity(), R.color.black));
             mHintView.setBackgroundResource(R.drawable.bg_home_search_bar_gray);
             mHintView.setTextColor(ContextCompat.getColor(getAttachActivity(), R.color.black60));
-            mSearchView.setImageResource(R.drawable.ic_search_black);
+            mSearchView.setImageResource(R.drawable.add);
             getStatusBarConfig().statusBarDarkFont(true).init();
         } else {
             mAddressView.setTextColor(ContextCompat.getColor(getAttachActivity(), R.color.white));
             mHintView.setBackgroundResource(R.drawable.bg_home_search_bar_transparent);
             mHintView.setTextColor(ContextCompat.getColor(getAttachActivity(), R.color.white60));
-            mSearchView.setImageResource(R.drawable.ic_search_white);
+            mSearchView.setImageResource(R.drawable.add);
             getStatusBarConfig().statusBarDarkFont(false).init();
         }
     }
@@ -261,4 +266,17 @@ public final class TestFragmentA extends MyFragment<HomeActivity>//首页
 //                .setUserInputEnabled(false);
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        if (event.getMes().equals("refreshHomeRv")) {
+            initHomeRv();
+        }
+
+        /* Do something */};
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }
