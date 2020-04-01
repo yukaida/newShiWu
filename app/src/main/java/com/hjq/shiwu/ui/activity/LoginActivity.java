@@ -45,10 +45,11 @@ public final class LoginActivity extends MyActivity
         KeyboardWatcher.SoftKeyboardStateListener {
 
     @DebugLog
-    public static void start(Context context, String phone, String password) {
+    public static void start(Context context, String qq, String password,String phone) {
         Intent intent = new Intent(context, LoginActivity.class);
-        intent.putExtra(IntentKey.PHONE, phone);
+        intent.putExtra(IntentKey.PHONE, qq);
         intent.putExtra(IntentKey.PASSWORD, password);
+        intent.putExtra(IntentKey.PHONE, phone);
         context.startActivity(intent);
     }
 
@@ -126,6 +127,7 @@ public final class LoginActivity extends MyActivity
         }
 
         // 填充传入的手机号和密码
+
         mPhoneView.setText(getString(IntentKey.PHONE));
         mPasswordView.setText(getString(IntentKey.PASSWORD));
     }

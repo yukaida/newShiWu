@@ -55,17 +55,13 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" /> <!-- 闪屏界面 -->
+
+
         <activity
             android:name=".ui.activity.SplashActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" /> <!-- App 首页 -->
-        <activity
-            android:name=".ui.activity.HomeActivity"
-            android:alwaysRetainTaskState="true"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
 
             <!-- 程序入口 -->
             <intent-filter>
@@ -74,7 +70,22 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 登录界面 -->
+
+        </activity>
+
+
+
+
+        <!-- App 首页 -->
+        <activity
+            android:name=".ui.activity.HomeActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+
+
+         <!-- 登录界面 -->
         <activity
             android:name=".ui.activity.LoginActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"

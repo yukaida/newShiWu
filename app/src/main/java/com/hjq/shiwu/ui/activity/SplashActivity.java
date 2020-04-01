@@ -2,6 +2,7 @@ package com.hjq.shiwu.ui.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Intent;
 import android.view.View;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -15,6 +16,8 @@ import com.hjq.shiwu.http.response.UserInfoBean;
 import com.hjq.shiwu.other.AppConfig;
 import com.hjq.http.EasyHttp;
 import com.hjq.http.listener.HttpCallback;
+import com.hjq.shiwu.other.SPUtils;
+import com.hjq.shiwu.ui.activity.add.PushActivity;
 
 import butterknife.BindView;
 
@@ -29,8 +32,7 @@ public final class SplashActivity extends MyActivity {
     @BindView(R.id.iv_splash_lottie)
     LottieAnimationView mLottieView;
 
-    @BindView(R.id.tv_splash_debug)
-    View mDebugView;
+
 
     @Override
     protected int getLayoutId() {
@@ -44,33 +46,34 @@ public final class SplashActivity extends MyActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                startActivity(HomeActivity.class);
-                finish();
+                if (((String) SPUtils.get(SplashActivity.this, "qq", "")).length() > 3) {
+                    Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                } else {
+                    Intent intent = new Intent(SplashActivity.this, RegisterActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }
 
     @Override
     protected void initData() {
-        if (AppConfig.isDebug()) {
-            mDebugView.setVisibility(View.VISIBLE);
-        } else {
-            mDebugView.setVisibility(View.INVISIBLE);
-        }
 
-        if (true) {
-            return;
-        }
+
         // 获取用户信息
-        EasyHttp.post(this)
-                .api(new UserInfoApi())
-                .request(new HttpCallback<HttpData<UserInfoBean>>(this) {
-
-                    @Override
-                    public void onSucceed(HttpData<UserInfoBean> data) {
-
-                    }
-                });
+//        EasyHttp.post(this)
+//                .api(new UserInfoApi())
+//                .request(new HttpCallback<HttpData<UserInfoBean>>(this) {
+//
+//                    @Override
+//                    public void onSucceed(HttpData<UserInfoBean> data) {
+//
+//                    }
+//                });
     }
 
     @Override

@@ -2,16 +2,21 @@ package com.hjq.shiwu.ui.fragment.realuse;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.google.gson.Gson;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.shiwu.R;
 import com.hjq.shiwu.bean.BannerBean;
@@ -22,6 +27,7 @@ import com.hjq.shiwu.bean.ThingsBean;
 import com.hjq.shiwu.common.MyFragment;
 import com.hjq.shiwu.ui.activity.HomeActivity;
 import com.hjq.shiwu.ui.activity.add.PushActivity;
+import com.hjq.shiwu.ui.activity.add.ThingsDetailActivity;
 import com.hjq.shiwu.ui.adapter.HomeRvAdapter;
 import com.hjq.shiwu.ui.adapter.ImageAdapter;
 import com.hjq.shiwu.ui.adapter.MessageRvAdapter;
@@ -156,6 +162,19 @@ public final class TestFragmentA extends MyFragment<HomeActivity>//首页
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         homeRvAdapter.setAnimationEnable(true);
         mRecyclerView.setAdapter(homeRvAdapter);
+
+        homeRvAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                Gson gson = new Gson();
+                homeItemList.get(position);
+                Intent intent = new Intent(getActivity(), ThingsDetailActivity.class);
+                intent.putExtra("thingsBean",gson.toJson(homeItemList.get(position)));
+                startActivity(intent);
+
+            }
+        });
+
     }
 
     @Override

@@ -26,7 +26,7 @@
         android:layout_height="120dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
-        android:src="@drawable/ic_logo" />
+        android:src="@drawable/logoround" />
 
     <LinearLayout
         android:id="@+id/ll_login_body"
@@ -42,7 +42,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="40dp"
-            android:hint="@string/common_phone_input_hint"
+            android:hint="输入QQ号"
             android:inputType="textVisiblePassword"
             android:singleLine="true"
             app:regexType="mobile" />

@@ -52,7 +52,7 @@
                     style="@style/EditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/common_phone_input_hint"
+                    android:hint="输入QQ号"
                     android:inputType="textVisiblePassword"
                     android:maxLines="1"
                     android:singleLine="true"
@@ -65,6 +65,7 @@
 
             <com.hjq.widget.view.CountdownView
                 android:id="@+id/cv_register_countdown"
+                android:visibility="gone"
                 style="@style/CountdownViewStyle" />
         </LinearLayout>
 
@@ -74,12 +75,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="@string/common_code_input_hint"
+            android:hint="输入手机号"
             android:inputType="number"
-            android:maxLength="@integer/sms_code_length"
+            android:maxLength="12"
             android:singleLine="true" />
 
         <View style="@style/HorizontalLineStyle" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_register_name"
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="输入昵称"
+            android:maxLength="10"
+            android:singleLine="true" />
+
+        <View style="@style/HorizontalLineStyle" />
+
 
         <com.hjq.widget.view.PasswordEditText
             android:id="@+id/et_register_password1"

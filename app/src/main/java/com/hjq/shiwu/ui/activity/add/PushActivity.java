@@ -23,6 +23,7 @@ import com.hjq.shiwu.common.MyActivity;
 import com.hjq.shiwu.http.glide.GlideApp;
 import com.hjq.shiwu.http.model.HttpData;
 import com.hjq.shiwu.http.request.UpdateImageApi;
+import com.hjq.shiwu.other.SPUtils;
 import com.hjq.shiwu.ui.activity.ImageActivity;
 import com.hjq.shiwu.ui.activity.PersonalDataActivity;
 import com.hjq.shiwu.ui.activity.PhotoActivity;
@@ -300,8 +301,8 @@ public class PushActivity extends MyActivity {
         thingsBean.setDes(pushDesEt.getText().toString());
         thingsBean.setImage(picpath);
         thingsBean.setKind(pushKindTv.getText().toString());
-        thingsBean.setName("yukaida");
-        thingsBean.setQqNubmber("1204799167");
+        thingsBean.setName((String) SPUtils.get(PushActivity.this, "name", ""));
+        thingsBean.setQqNubmber((String) SPUtils.get(PushActivity.this, "qq", ""));
         thingsBean.setTime(pushLosttimeTv.getText().toString());
         thingsBean.setTips(pushRemarkEt.getText().toString());
 
